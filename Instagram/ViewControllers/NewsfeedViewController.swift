@@ -7,23 +7,40 @@
 //
 
 import UIKit
+import RxRealmDataSources
+import RxCocoa
 
-class NewsfeedViewController: UIViewController, StoryboardInitializableViewController {
+class NewsfeedViewController: ItemsListViewController<Post> {
+    override var router: String! {
+        return "/v1/users/self/media/recent"
+    }
+    
+    var dataSource = RxCollectionViewRealmDataSource<Post>(cellIdentifier: "PostCell", cellType: PostCell.self) {cell, ip, post in
+        cell.update(with: post)
+    }
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        title = "Newsfeed"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func bindUI() {
+        super.bindUI()
+        // bind viewModel
+        viewModel.items
+            .bind(to: collectionView.rx.realmChanges(dataSource))
+            .disposed(by: bag)
+        
+        // fetchNext when reach last 20 point to the bottom
+        collectionView.rx.contentOffset
+            .filter {$0.y + self.collectionView.frame.size.height + 20 > self.collectionView.contentSize.height}
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] (_) in
+                self?.fetchNext()
+            })
+            .disposed(by: bag)
     }
-    */
-
 }

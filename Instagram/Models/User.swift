@@ -14,8 +14,8 @@ class User: Object, Unboxable {
     // MARK: - Properties
     @objc dynamic var id: String = ""
     @objc dynamic var name: String = ""
-    @objc dynamic var fullName: String = ""
-    @objc dynamic var profilePicture: String = ""
+    @objc dynamic var fullName: String? = nil
+    @objc dynamic var profilePicture: String? = nil
     
     override static func primaryKey() -> String? {
         return "id"
