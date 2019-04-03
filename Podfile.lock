@@ -1,0 +1,75 @@
+PODS:
+  - Alamofire (4.8.2)
+  - JGProgressHUD (2.0.3)
+  - Realm (3.14.0):
+    - Realm/Headers (= 3.14.0)
+  - Realm/Headers (3.14.0)
+  - RealmSwift (3.14.0):
+    - Realm (= 3.14.0)
+  - RxAlamofire (4.4.0):
+    - RxAlamofire/Core (= 4.4.0)
+  - RxAlamofire/Core (4.4.0):
+    - Alamofire (~> 4.8)
+    - RxSwift (~> 4.4)
+  - RxAtomic (4.4.2)
+  - RxCocoa (4.4.2):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxRealm (0.7.6):
+    - RealmSwift (~> 3.0)
+    - RxSwift (~> 4.0)
+  - RxRealmDataSources (0.2.10):
+    - RealmSwift (~> 3.10)
+    - RxCocoa (~> 4.0)
+    - RxRealm (~> 0.7.6)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - Unbox (3.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - JGProgressHUD
+  - RealmSwift
+  - RxAlamofire
+  - RxCocoa
+  - RxRealm
+  - RxRealmDataSources
+  - RxSwift
+  - SDWebImage
+  - Unbox
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - JGProgressHUD
+    - Realm
+    - RealmSwift
+    - RxAlamofire
+    - RxAtomic
+    - RxCocoa
+    - RxRealm
+    - RxRealmDataSources
+    - RxSwift
+    - SDWebImage
+    - Unbox
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  Realm: 221b25919bb5a010a3c597d707f8df3492dcd93a
+  RealmSwift: 28f22dfa6a27b9a778cfb09471558b6afcf1022c
+  RxAlamofire: ecc5e458ee11250938d23360179eb3a37cd3ee1e
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
+  RxRealm: 5379eddd74f8d617ca7681d1f8d144af25b432b0
+  RxRealmDataSources: 89b61c0d3edf7769da2a6bf4dcf317bc713394db
+  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  Unbox: 9ed33b2a31f7a8a049f54b94d40c4a52a28c4d9d
+
+PODFILE CHECKSUM: ce37bb3856d78542120dbb23f45a6ca5f6faeeeb
+
+COCOAPODS: 1.6.0.beta.2
