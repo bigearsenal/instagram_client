@@ -48,6 +48,18 @@ class NewsfeedViewController: ItemsListViewController<Post> {
                 self?.fetchNext()
             })
             .disposed(by: bag)
-        
+       
+        // handle tap on image
+        collectionView.rx.realmModelSelected(Post.self)
+            .bind { (post) in
+                let vc = PostDetailViewController.fromStoryboard()
+                vc.post = post
+                self.show(vc, sender: nil)
+            }
+            .disposed(by: bag)
+      
+        let refreshControl = UIRefreshControl()
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
 }

@@ -16,6 +16,7 @@ class Post: Object, Unboxable {
     @objc dynamic var image: String = ""
     @objc dynamic var caption: String? = nil
     @objc dynamic var user: User? = nil
+    @objc dynamic var likesCount: Int32 = 0
     
     override static func primaryKey() -> String? {
         return "id"
@@ -27,7 +28,8 @@ class Post: Object, Unboxable {
         id = try unboxer.unbox(key: "id")
         thumbnail = try unboxer.unbox(keyPath: "images.thumbnail.url")
         image = try unboxer.unbox(keyPath: "images.standard_resolution.url")
-        caption = try unboxer.unbox(keyPath: "caption.text")
-        user = try unboxer.unbox(keyPath: "caption.from")
+        caption = try? unboxer.unbox(keyPath: "caption.text")
+        likesCount = try unboxer.unbox(keyPath: "likes.count")
+        user = try? unboxer.unbox(keyPath: "caption.from")
     }
 }
