@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // set default timeout
         Alamofire.SessionManager.default.session.configuration.timeoutIntervalForRequest = 300
         
+        // realm's migration
+        migrateRealm()
+        
         // observe loginState
         let loggedIn = InstagramAPI.standard.loggedIn
             .asObservable()
