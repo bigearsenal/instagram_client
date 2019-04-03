@@ -63,6 +63,11 @@ class ItemsListViewController<T>: UIViewController where T: Object, T: Unboxable
             .disposed(by: self.bag)
     }
     
+    @objc func refresh() {
+        self.viewModel.refreshFetcher()
+        fetchNext()
+    }
+    
 
     /*
     // MARK: - Navigation
