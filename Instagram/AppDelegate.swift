@@ -7,15 +7,41 @@
 //
 
 import UIKit
+import Alamofire
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    private let bag = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // set default timeout
+        Alamofire.SessionManager.default.session.configuration.timeoutIntervalForRequest = 300
+        
+        // observe loginState
+        let loggedIn = InstagramAPI.standard.loggedIn
+            .asObservable()
+        
+        loggedIn.filter {$0 == false}
+            .subscribe(onNext: { (_) in
+                let vc = LoginViewController.fromStoryboard()
+                self.window?.rootViewController = vc
+            })
+            .disposed(by: bag)
+        
+        loggedIn.skip(1)
+            .filter {$0 == true}
+            .subscribe(onNext: { (_) in
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                let vc = sb.instantiateViewController(withIdentifier: "NavigationController")
+                self.window?.rootViewController = vc
+            })
+            .disposed(by: bag)
+        
         return true
     }
 
