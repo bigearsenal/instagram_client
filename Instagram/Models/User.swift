@@ -26,8 +26,8 @@ class User: Object, Unboxable {
         self.init()
         id = try unboxer.unbox(key: "id")
         name = try unboxer.unbox(key: "username")
-        fullName = try unboxer.unbox(key: "full_name")
-        profilePicture = try unboxer.unbox(key: "profile_picture")
+        fullName = try? unboxer.unbox(key: "full_name")
+        profilePicture = try? unboxer.unbox(key: "profile_picture")
     }
     
     
