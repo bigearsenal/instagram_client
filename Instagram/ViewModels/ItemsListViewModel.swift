@@ -63,7 +63,10 @@ class ItemsListViewModel<T> where T: Object, T: Unboxable {
         return Completable.create {completable in
             let disposable = Disposables.create()
             self.fetcher.requestNext()
-                .subscribe(onSuccess: self.save, onError: { (error) in
+                .subscribe(onSuccess: { newItems in
+                    self.save(newItems)
+                    completable(.completed)
+                }, onError: { (error) in
                     completable(.error(error))
                 })
                 .disposed(by: self.bag)

@@ -24,6 +24,8 @@ class ItemsListViewController<T>: UIViewController where T: Object, T: Unboxable
     
     var viewModel: ItemsListViewModel<T>!
     
+    internal var refreshControl: UIRefreshControl?
+    
     // dispose bag
     internal let bag = DisposeBag()
 
@@ -46,11 +48,15 @@ class ItemsListViewController<T>: UIViewController where T: Object, T: Unboxable
     
     func bindUI() {
         // for inheritting
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     func fetchNext() {
         self.viewModel.fetchNext()
             .subscribe(
+                onCompleted: {
+                    self.refreshControl?.endRefreshing()
+                },
                 onError: { [weak self] _ in
                     guard let self = self else {return}
                     let hud = JGProgressHUD(style: .dark)
