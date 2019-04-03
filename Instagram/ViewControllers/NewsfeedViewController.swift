@@ -22,6 +22,9 @@ class NewsfeedViewController: ItemsListViewController<Post> {
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
+        // initialize refreshControl
+        refreshControl = UIRefreshControl()
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         title = "Newsfeed"
@@ -29,6 +32,9 @@ class NewsfeedViewController: ItemsListViewController<Post> {
     
     override func bindUI() {
         super.bindUI()
+        // bind refreshControll to collectionView
+        collectionView.refreshControl = refreshControl
+        
         // bind viewModel
         viewModel.items
             .bind(to: collectionView.rx.realmChanges(dataSource))
@@ -43,8 +49,5 @@ class NewsfeedViewController: ItemsListViewController<Post> {
             })
             .disposed(by: bag)
         
-        let refreshControl = UIRefreshControl()
-        collectionView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
 }
