@@ -51,5 +51,9 @@ class NewsfeedViewController: ItemsListViewController<Post> {
                 self.show(vc, sender: nil)
             }
             .disposed(by: bag)
+      
+        let refreshControl = UIRefreshControl()
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
 }

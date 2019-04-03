@@ -70,4 +70,8 @@ class ItemsListViewModel<T> where T: Object, T: Unboxable {
             return disposable
         }
     }
+    
+    @objc func refreshFetcher() {
+        fetcher.refresh()
+    }
 }

@@ -33,11 +33,10 @@ class ItemsFetcher<T> where T: Unboxable {
     var reachedTheEnd = false
     var maxId: String?
     
-    func reload() -> Single<[T]> {
+    func refresh() {
         reachedTheEnd = false
         isFetching = false
         maxId = nil
-        return requestNext()
     }
     
     func requestNext() -> Single<[T]> {
