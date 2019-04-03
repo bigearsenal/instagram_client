@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Alamofire
 import Unbox
+import RxAlamofire
 
 final class InstagramAPI {
     // MARK: - Variables
@@ -65,5 +66,16 @@ final class InstagramAPI {
             return Disposables.create()
         }
         
+    }
+    
+    // MARK: - Helpers
+    enum InstagramAPIError: Error {
+        case invalidToken
+    }
+    func requestWithToken(router: String, method: HTTPMethod, parameters: [String: String]?) -> Observable<(HTTPURLResponse, Any)> {
+        guard let token = AuthStorage.token else {return Observable.error(InstagramAPIError.invalidToken)}
+        var query = "?access_token=\(token)"
+        if router.contains("?") {query = "&access_token=\(token)"}
+        return RxAlamofire.requestJSON(method, "\(endpoint)\(router)\(query)", parameters: parameters)
     }
 }
