@@ -15,7 +15,7 @@ import Unbox
 
 class ItemsFetcher<T> where T: Unboxable {
     enum FetcherError: Error {
-        case createRequestFailed, requestFailed
+        case createRequestFailed, requestFailed, canceled
     }
     
     // MARK: - Init
@@ -44,7 +44,10 @@ class ItemsFetcher<T> where T: Unboxable {
             let disposable = Disposables.create()
             
             // check if request is dupplicated or reached the end
-            if self.isFetching || self.reachedTheEnd {return disposable}
+            if self.isFetching || self.reachedTheEnd {
+                single(.error(FetcherError.canceled))
+                return disposable
+            }
             
             // mark as fetching
             self.isFetching = true
@@ -77,9 +80,11 @@ class ItemsFetcher<T> where T: Unboxable {
                                 self?.maxId = next_max_id
                             } else {
                                 self?.reachedTheEnd = true
+                                single(.error(FetcherError.canceled))
                             }
+                        } else {
+                            single(.error(FetcherError.canceled))
                         }
-
                     },
                     onError: {[weak self] (error) in
                         self?.isFetching = false

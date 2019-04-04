@@ -58,6 +58,7 @@ class ItemsListViewController<T>: UIViewController where T: Object, T: Unboxable
                     self.refreshControl?.endRefreshing()
                 },
                 onError: { [weak self] _ in
+                    self?.refreshControl?.endRefreshing()
                     guard let self = self else {return}
                     let hud = JGProgressHUD(style: .dark)
                     hud.textLabel.text = "Can not retrieve items.\nPlease check your internet connection"
