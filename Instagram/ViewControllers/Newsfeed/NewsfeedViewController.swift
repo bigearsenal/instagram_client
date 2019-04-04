@@ -54,7 +54,7 @@ class NewsfeedViewController: ItemsListViewController<Post> {
         
         // fetchNext when reach last 20 point to the bottom
         collectionView.rx.contentOffset
-            .filter {$0.y + self.collectionView.frame.size.height + 20 > self.collectionView.contentSize.height}
+            .filter {$0.y + self.collectionView.frame.size.height + 100 > self.collectionView.contentSize.height}
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] (_) in
                 self?.fetchNext()

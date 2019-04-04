@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         loggedIn.filter {$0 == false}
             .subscribe(onNext: { (_) in
-                let vc = LoginViewController.fromStoryboard()
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                let vc = sb.instantiateViewController(withIdentifier: "LoginNavigationController")
                 self.window?.rootViewController = vc
             })
             .disposed(by: bag)

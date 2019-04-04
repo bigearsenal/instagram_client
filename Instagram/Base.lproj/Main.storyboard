@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--Login with instagram-->
         <scene sceneID="bEv-X2-ZL0">
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="dxW-k2-cvu" customClass="LoginViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,10 +20,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="hed-59-aR7"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Login with instagram" id="4p4-UC-1Vz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="TMk-w7-aqZ">
+                            <connections>
+                                <action selector="reload:" destination="dxW-k2-cvu" id="0R5-71-812"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61h-Rt-xS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1216" y="181"/>
+            <point key="canvasLocation" x="-307.24637681159425" y="180.80357142857142"/>
         </scene>
         <!--Newsfeed View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -85,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="992.75362318840587" y="2.6785714285714284"/>
+            <point key="canvasLocation" x="1902.8985507246377" y="2.6785714285714284"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="gLA-wm-Ou6">
@@ -143,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Usb-2R-6W8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1985.5072463768117" y="3.3482142857142856"/>
+            <point key="canvasLocation" x="2895.6521739130435" y="3.3482142857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LwB-2f-VYO">
@@ -161,7 +168,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="opy-Ic-Vwv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-19" y="3"/>
+            <point key="canvasLocation" x="889.85507246376824" y="2.6785714285714284"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EZM-GG-UVz">
+            <objects>
+                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="T2A-aR-XrI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iNF-BY-EqK">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dxW-k2-cvu" kind="relationship" relationship="rootViewController" id="xgc-R8-iXJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FgN-2b-Vab" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1217.3913043478262" y="180.80357142857142"/>
         </scene>
     </scenes>
 </document>
