@@ -24,8 +24,6 @@ class ItemsListViewController<T>: UIViewController where T: Object, T: Unboxable
     
     var viewModel: ItemsListViewModel<T>!
     
-    internal var refreshControl: UIRefreshControl?
-    
     // dispose bag
     internal let bag = DisposeBag()
 
@@ -36,7 +34,6 @@ class ItemsListViewController<T>: UIViewController where T: Object, T: Unboxable
         // Do any additional setup after loading the view.
         createViewModel()
         bindUI()
-        fetchNext()
     }
     
     func createViewModel() {
@@ -48,17 +45,16 @@ class ItemsListViewController<T>: UIViewController where T: Object, T: Unboxable
     
     func bindUI() {
         // for inheritting
-        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     func fetchNext() {
         self.viewModel.fetchNext()
             .subscribe(
                 onCompleted: {
-                    self.refreshControl?.endRefreshing()
+                    self.endRefreshing()
                 },
                 onError: { [weak self] _ in
-                    self?.refreshControl?.endRefreshing()
+                    self?.endRefreshing()
                     guard let self = self else {return}
                     let hud = JGProgressHUD(style: .dark)
                     hud.textLabel.text = "Can not retrieve items.\nPlease check your internet connection"
@@ -73,6 +69,10 @@ class ItemsListViewController<T>: UIViewController where T: Object, T: Unboxable
     @objc func refresh() {
         self.viewModel.refreshFetcher()
         fetchNext()
+    }
+    
+    func endRefreshing() {
+        // for inheriting
     }
     
 

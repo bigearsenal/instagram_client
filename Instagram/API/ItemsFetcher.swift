@@ -53,7 +53,7 @@ class ItemsFetcher<T> where T: Unboxable {
             self.isFetching = true
             
             // create query base on maxId
-            var query = "\(self.router)?count=6"
+            var query = "\(self.router)?count=10"
             if let maxId = self.maxId {
                 query += "&max_id=\(maxId)"
             }
