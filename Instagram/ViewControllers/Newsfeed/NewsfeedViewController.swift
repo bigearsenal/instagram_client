@@ -22,9 +22,6 @@ class NewsfeedViewController: ItemsListViewController<Post> {
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
-        // initialize refreshControl
-        refreshControl = UIRefreshControl()
-        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         title = "Newsfeed"
@@ -46,6 +43,8 @@ class NewsfeedViewController: ItemsListViewController<Post> {
             .disposed(by: bag)
         
         // bind refreshControll to collectionView
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         collectionView.refreshControl = refreshControl
         
         // bind viewModel
@@ -70,10 +69,6 @@ class NewsfeedViewController: ItemsListViewController<Post> {
                 self.show(vc, sender: nil)
             }
             .disposed(by: bag)
-      
-        let refreshControl = UIRefreshControl()
-        collectionView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     func layoutForCollectionView() -> UICollectionViewFlowLayout {
@@ -86,5 +81,9 @@ class NewsfeedViewController: ItemsListViewController<Post> {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         return layout
+    }
+    
+    override func endRefreshing() {
+        collectionView.refreshControl?.endRefreshing()
     }
 }

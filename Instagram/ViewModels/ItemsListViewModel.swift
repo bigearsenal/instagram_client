@@ -67,7 +67,11 @@ class ItemsListViewModel<T> where T: Object, T: Unboxable {
                     self.save(newItems)
                     completable(.completed)
                 }, onError: { (error) in
-                    completable(.error(error))
+                    if error == ItemsFetcher<T>.FetcherError.canceled {
+                        completable(.completed)
+                    } else {
+                        completable(.error(error))
+                    }
                 })
                 .disposed(by: self.bag)
             return disposable
