@@ -16,6 +16,7 @@ target 'Instagram' do
   pod 'RxRealmDataSources'
   pod 'SDWebImage'
   pod 'JGProgressHUD'
+  pod 'SwiftKeychainWrapper'
 
   target 'InstagramTests' do
     inherit! :search_paths

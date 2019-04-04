@@ -27,7 +27,8 @@ PODS:
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
-  - Unbox (3.0.0)
+  - SwiftKeychainWrapper (3.2.0)
+  - Unbox (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - RxRealmDataSources
   - RxSwift
   - SDWebImage
+  - SwiftKeychainWrapper
   - Unbox
 
 SPEC REPOS:
@@ -54,6 +56,7 @@ SPEC REPOS:
     - RxRealmDataSources
     - RxSwift
     - SDWebImage
+    - SwiftKeychainWrapper
     - Unbox
 
 SPEC CHECKSUMS:
@@ -68,8 +71,9 @@ SPEC CHECKSUMS:
   RxRealmDataSources: 89b61c0d3edf7769da2a6bf4dcf317bc713394db
   RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
-  Unbox: 9ed33b2a31f7a8a049f54b94d40c4a52a28c4d9d
+  SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
+  Unbox: d2677af8fde59a30141e02981b11cb6a0e3b6bc5
 
-PODFILE CHECKSUM: ce37bb3856d78542120dbb23f45a6ca5f6faeeeb
+PODFILE CHECKSUM: 3e460547b822b0c06fc1c7b4e8db4277e655f540
 
 COCOAPODS: 1.6.0.beta.2
