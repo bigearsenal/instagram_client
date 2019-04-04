@@ -28,10 +28,23 @@ class NewsfeedViewController: ItemsListViewController<Post> {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         title = "Newsfeed"
+        
+        // set layout for collectionView
+        collectionView.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        collectionView.collectionViewLayout = layoutForCollectionView()
+        
     }
     
     override func bindUI() {
         super.bindUI()
+        // device rotation
+        NotificationCenter.default.rx.notification(Notification.Name("UIDeviceOrientationDidChangeNotification"))
+            .subscribe(onNext: { [weak self] (_) in
+                guard let strongSelf = self else {return}
+                strongSelf.collectionView.collectionViewLayout = strongSelf.layoutForCollectionView()
+            })
+            .disposed(by: bag)
+        
         // bind refreshControll to collectionView
         collectionView.refreshControl = refreshControl
         
@@ -61,5 +74,17 @@ class NewsfeedViewController: ItemsListViewController<Post> {
         let refreshControl = UIRefreshControl()
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
+    func layoutForCollectionView() -> UICollectionViewFlowLayout {
+        let screenWidth = collectionView.bounds.inset(by: collectionView.layoutMargins).width
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInsetReference = .fromSafeArea
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: screenWidth/2, height: screenWidth/2)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        return layout
     }
 }

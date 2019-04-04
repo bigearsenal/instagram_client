@@ -105,6 +105,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		3B0E77382255FA1B00ECDC78 /* Newsfeed */ = {
+			isa = PBXGroup;
+			children = (
+				3BA50A352255073A00331A93 /* NewsfeedViewController.swift */,
+				3BA50A442255548000331A93 /* PostCell.swift */,
+			);
+			path = Newsfeed;
+			sourceTree = "<group>";
+		};
 		3BA509F42254F13C00331A93 = {
 			isa = PBXGroup;
 			children = (
@@ -192,11 +201,10 @@
 		3BA50A2E2254F64500331A93 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B0E77382255FA1B00ECDC78 /* Newsfeed */,
 				3BA50A2F2254F65800331A93 /* LoginViewController.swift */,
-				3BA50A352255073A00331A93 /* NewsfeedViewController.swift */,
-				3BA50A40225548EC00331A93 /* ItemsListViewController.swift */,
-				3BA50A442255548000331A93 /* PostCell.swift */,
 				3BA50A462255686600331A93 /* PostDetailViewController.swift */,
+				3BA50A40225548EC00331A93 /* ItemsListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
